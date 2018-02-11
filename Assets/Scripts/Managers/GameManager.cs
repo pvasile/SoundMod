@@ -110,7 +110,7 @@ namespace Complete
 
             // Increment the round number and display text showing the players what round it is.
             m_RoundNumber++;
-            m_MessageText.text = "ROUND " + m_RoundNumber;
+			m_MessageText.text = "(Engines Start)";
 
             // Wait for the specified length of time until yielding control back to the game loop.
             yield return m_StartWait;
@@ -221,20 +221,20 @@ namespace Complete
 
             // If there is a winner then change the message to reflect that.
             if (m_RoundWinner != null)
-                message = m_RoundWinner.m_ColoredPlayerText + " WINS THE ROUND!";
+				message = "(applause)";
 
             // Add some line breaks after the initial message.
             message += "\n\n\n\n";
 
             // Go through all the tanks and add each of their scores to the message.
-            for (int i = 0; i < m_Tanks.Length; i++)
+          /*  for (int i = 0; i < m_Tanks.Length; i++)
             {
                 message += m_Tanks[i].m_ColoredPlayerText + ": " + m_Tanks[i].m_Wins + " WINS\n";
             }
-
+*/
             // If there is a game winner, change the entire message to reflect that.
             if (m_GameWinner != null)
-                message = m_GameWinner.m_ColoredPlayerText + " WINS THE GAME!";
+				message = "(applause)!";
 
             return message;
         }
