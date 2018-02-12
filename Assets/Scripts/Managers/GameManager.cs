@@ -124,12 +124,10 @@ namespace Complete
         {
             // As soon as the round begins playing let the players control the tanks.
             EnableTankControl();
+			customImage.enabled = false;
+			m_MessageText.text = string.Empty;
 
-            // Clear the text from the screen.
-            m_MessageText.text = string.Empty;
-				customImage.enabled = false;
 		
-
             // While there is not one tank left...
             while (!OneTankLeft())
             {
@@ -138,6 +136,15 @@ namespace Complete
             }
         }
 
+		private IEnumerator Shooting() 
+		{
+			if (Input.GetKeyDown("return")) {
+			customImage.enabled = true;
+				m_MessageText.text = "bang";
+		}
+			yield return null;
+		}
+	
 
         private IEnumerator RoundEnding()
         {
