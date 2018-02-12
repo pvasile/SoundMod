@@ -14,9 +14,11 @@ namespace Complete
         public float m_EndDelay = 3f;               // The delay between the end of RoundPlaying and RoundEnding phases.
         public CameraControl m_CameraControl;       // Reference to the CameraControl script for control during different phases.
         public Text m_MessageText;                  // Reference to the overlay Text to display winning text, etc.
+		public Image customImage;
         public GameObject[] m_TankPrefabs;
         public TankManager[] m_Tanks;               // A collection of managers for enabling and disabling different aspects of the tanks.
         public List<Transform> wayPointsForAI;
+
 
         private int m_RoundNumber;                  // Which round the game is currently on.
         private WaitForSeconds m_StartWait;         // Used to have a delay whilst the round starts.
@@ -111,6 +113,7 @@ namespace Complete
             // Increment the round number and display text showing the players what round it is.
             m_RoundNumber++;
 			m_MessageText.text = "(Engines Start)";
+			customImage.enabled = true;
 
             // Wait for the specified length of time until yielding control back to the game loop.
             yield return m_StartWait;
@@ -124,6 +127,8 @@ namespace Complete
 
             // Clear the text from the screen.
             m_MessageText.text = string.Empty;
+				customImage.enabled = false;
+		
 
             // While there is not one tank left...
             while (!OneTankLeft())
@@ -222,9 +227,11 @@ namespace Complete
             // If there is a winner then change the message to reflect that.
             if (m_RoundWinner != null)
 				message = "(applause)";
+			customImage.enabled = true;
 
             // Add some line breaks after the initial message.
             message += "\n\n\n\n";
+
 
             // Go through all the tanks and add each of their scores to the message.
           /*  for (int i = 0; i < m_Tanks.Length; i++)
