@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Complete
 {
@@ -10,13 +11,15 @@ namespace Complete
         public float m_MaxDamage = 100f;                    // The amount of damage done if the explosion is centred on a tank.
         public float m_ExplosionForce = 1000f;              // The amount of force added to a tank at the centre of the explosion.
         public float m_MaxLifeTime = 2f;                    // The time in seconds before the shell is removed.
-        public float m_ExplosionRadius = 5f;                // The maximum distance away from the explosion tanks can be and are still affected.
+        public float m_ExplosionRadius = 5f;   
+		public Image OwImage;// The maximum distance away from the explosion tanks can be and are still affected.
 
 
         private void Start ()
         {
             // If it isn't destroyed by then, destroy the shell after it's lifetime.
             Destroy (gameObject, m_MaxLifeTime);
+			OwImage.enabled = false;
         }
 
 
@@ -50,6 +53,8 @@ namespace Complete
 
                 // Deal this damage to the tank.
                 targetHealth.TakeDamage (damage);
+
+	
             }
 
             // Unparent the particles from the shell.
@@ -61,12 +66,14 @@ namespace Complete
             // Play the explosion sound effect.
             m_ExplosionAudio.Play();
 
+
             // Once the particles have finished, destroy the gameobject they are on.
             ParticleSystem.MainModule mainModule = m_ExplosionParticles.main;
             Destroy (m_ExplosionParticles.gameObject, mainModule.duration);
 
             // Destroy the shell.
             Destroy (gameObject);
+			OwImage.enabled = true;
         }
 
 

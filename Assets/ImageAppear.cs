@@ -8,11 +8,11 @@ public class ImageAppear : MonoBehaviour
 	[SerializeField] Image customImage;
 
 	void Update() {
-		if (Input.GetKeyDown ("return")) {
+		if (Input.GetKeyDown ("space")) {
 
 			customImage.enabled = true;
 		
-		} if (Input.GetKeyUp ("return")) {
+		} if (Input.GetKeyUp ("space")) {
 
 			customImage.enabled = false;
 		}

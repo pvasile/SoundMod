@@ -138,12 +138,22 @@ namespace Complete
 
 		private IEnumerator Shooting() 
 		{
-			if (Input.GetKeyDown("return")) {
+			if (Input.GetKeyDown("space")) {
 			customImage.enabled = true;
-				m_MessageText.text = "bang";
+		
 		}
 			yield return null;
 		}
+
+		private IEnumerator ShootingMessage()
+		{
+		if (Input.GetKeyDown ("space")) {
+				m_MessageText.text = "(bang)";
+			}
+			yield return null;
+
+		}
+
 	
 
         private IEnumerator RoundEnding()
