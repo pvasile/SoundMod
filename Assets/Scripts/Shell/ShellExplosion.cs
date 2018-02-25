@@ -12,14 +12,13 @@ namespace Complete
         public float m_ExplosionForce = 1000f;              // The amount of force added to a tank at the centre of the explosion.
         public float m_MaxLifeTime = 2f;                    // The time in seconds before the shell is removed.
         public float m_ExplosionRadius = 5f;   
-		public Image OwImage;// The maximum distance away from the explosion tanks can be and are still affected.
+		//public Image OwImage;// The maximum distance away from the explosion tanks can be and are still affected.
 
 
         private void Start ()
         {
             // If it isn't destroyed by then, destroy the shell after it's lifetime.
             Destroy (gameObject, m_MaxLifeTime);
-			OwImage.enabled = false;
         }
 
 
@@ -50,6 +49,7 @@ namespace Complete
 
                 // Calculate the amount of damage the target should take based on it's distance from the shell.
                 float damage = CalculateDamage (targetRigidbody.position);
+			
 
                 // Deal this damage to the tank.
                 targetHealth.TakeDamage (damage);
@@ -73,7 +73,7 @@ namespace Complete
 
             // Destroy the shell.
             Destroy (gameObject);
-			OwImage.enabled = true;
+
         }
 
 
